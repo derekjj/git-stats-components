@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/react",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for React",
 	"author": "Derek Johnston",
 	"license": "MIT",
