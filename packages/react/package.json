@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/react",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for React",
 	"author": "Derek Johnston",
 	"license": "MIT",
@@ -41,7 +41,7 @@
 		"react-dom": "^18.0.0"
 	},
 	"dependencies": {
-		"@git-stats-components/core": "workspace:*"
+		"@git-stats-components/core": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.0",

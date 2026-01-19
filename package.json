@@ -1,6 +1,5 @@
 {
 	"name": "git-stats-components",
-	"private": true,
 	"version": "0.2.0",
 	"type": "module",
 	"description": "Multi-framework monorepo for GitHub/GitLab/Bitbucket contribution graphs",
@@ -37,8 +36,15 @@
 		
 		"demo": "node scripts/serve-demos.js",
 		"generate-data": "node scripts/generate-dummy-data.js",
- 		"demo:build": "pnpm generate-data && pnpm build && echo '\n✨ Ready! Run: pnpm demo'",
-  
+		"demo:build": "pnpm generate-data && pnpm build && echo '\n✨ Ready! Run: pnpm demo'",
+		
+		"publish:dry": "node scripts/publish.js --dry-run",
+		"publish:npm": "node scripts/publish.js",
+		"publish:force": "node scripts/publish.js --force",
+		"version:patch": "node scripts/version.js patch",
+		"version:minor": "node scripts/version.js minor",
+		"version:major": "node scripts/version.js major",
+		
 		"prepare": "chmod +x scripts/*.sh scripts/*.js 2>/dev/null || true"
 	},
 	"devDependencies": {
