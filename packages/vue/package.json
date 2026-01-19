@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/vue",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for Vue 3",
 	"author": "Derek Johnston",
 	"license": "MIT",
