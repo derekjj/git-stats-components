@@ -19,7 +19,9 @@
 		}
 	},
 	"files": [
-		"dist"
+		"dist",
+		"README.md",
+		"LICENSE"
 	],
 	"scripts": {
 		"build": "tsc && node scripts/post-build.js",
@@ -34,8 +36,18 @@
 		"contributions",
 		"github",
 		"gitlab",
+		"bitbucket",
 		"core"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/derekjj/git-stats-components.git",
+		"directory": "packages/core"
+	},
+	"bugs": {
+		"url": "https://github.com/derekjj/git-stats-components/issues"
+	},
+	"homepage": "https://github.com/derekjj/git-stats-components#readme",
 	"devDependencies": {
 		"@types/node": "^20.10.6",
 		"typescript": "^5.3.3",

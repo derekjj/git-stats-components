@@ -17,7 +17,9 @@
 		"./style.css": "./dist/style.css"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"README.md",
+		"LICENSE"
 	],
 	"keywords": [
 		"vue",
@@ -27,8 +29,18 @@
 		"bitbucket",
 		"contributions",
 		"stats",
-		"component"
+		"component",
+		"git-stats"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/derekjj/git-stats-components.git",
+		"directory": "packages/vue"
+	},
+	"bugs": {
+		"url": "https://github.com/derekjj/git-stats-components/issues"
+	},
+	"homepage": "https://github.com/derekjj/git-stats-components/tree/main/packages/vue#readme",
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite build --watch",
