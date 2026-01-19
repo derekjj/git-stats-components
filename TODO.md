@@ -2,8 +2,4 @@
 TODO:
 Vue
 - README
-- old repo mentions have slipped back in vue-git-stats
-- publish only has package.json
-
-Core
-- publish only has package.json
+- [plugin:vite:import-analysis] Failed to resolve entry for package "@git-stats-components/vue". The package may have incorrect main/module/exports specified in its package.json.

@@ -16,7 +16,7 @@ export default defineConfig({
 		lib: {
 			entry: resolve(__dirname, 'src/index.ts'),
 			name: 'VueGitStats',
-			fileName: (format) => `vue-git-stats.${format}.js`,
+			fileName: (format) => `vue.${format}.js`,
 		},
 		rollupOptions: {
 			// Only externalize Vue, NOT core (core should be bundled)
