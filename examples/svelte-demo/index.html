@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svelte Git Stats Demo</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1e26 100%);
+            color: #e6edf3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff3e00 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #7d8590;
+            font-size: 18px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .note {
+            background: rgba(255, 62, 0, 0.1);
+            border: 1px solid #ff3e00;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .note h3 {
+            color: #ff3e00;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .note p {
+            color: #7d8590;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .note code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+            color: #e6edf3;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: #e6edf3;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #7d8590;
+        }
+        
+        .footer a {
+            color: #ff3e00;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .code-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example pre {
+            margin: 0;
+            color: #e6edf3;
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧡 Svelte Git Stats Demo</h1>
+        <p>Beautiful contribution graphs for Svelte</p>
+    </div>
+    
+    <div class="container">
+        <div class="note">
+            <h3>⚠️ Svelte Components Require Build Step</h3>
+            <p>
+                Unlike Vue and React which can run in the browser via CDN, Svelte components 
+                need to be compiled. This demo shows you how to use the components in a real 
+                Svelte/SvelteKit project.
+            </p>
+            <p style="margin-top: 16px;">
+                <strong>Why?</strong> Svelte compiles components at build time rather than runtime, 
+                which makes the final bundle smaller and faster, but means you can't load them 
+                directly in the browser like Vue/React.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2>📦 Installation</h2>
+            <div class="code-example">
+                <pre>npm install @git-stats-components/svelte</pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Basic Usage</h2>
+            <div class="code-example">
+                <pre>&lt;script&gt;
+  import { ContributionGraph, StatsBreakdown } from '@git-stats-components/svelte'
+  
+  const experienceData = [
+    {
+      startDate: '2020-01-01',
+      endDate: null,
+      skills: ['JavaScript', 'Svelte', 'TypeScript']
+    }
+  ]
+&lt;/script&gt;
+
+&lt;ContributionGraph dataUrl="/data/git-stats.json" colorScheme="green" /&gt;
+&lt;StatsBreakdown dataUrl="/data/git-stats.json" {experienceData} /&gt;</pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🚀 SvelteKit Usage</h2>
+            <div class="code-example">
+                <pre>&lt;!-- src/routes/+page.svelte --&gt;
+&lt;script lang="ts"&gt;
+  import { ContributionGraph, StatsBreakdown } from '@git-stats-components/svelte'
+  import type { ExperienceEntry } from '@git-stats-components/svelte'
+  
+  let colorScheme: 'green' | 'blue' | 'purple' | 'orange' = 'green'
+  
+  const experienceData: ExperienceEntry[] = [
+    {
+      startDate: '2020-01-01',
+      endDate: null,
+      skills: ['JavaScript', 'Svelte', 'SvelteKit', 'TypeScript']
+    }
+  ]
+  
+  function handleDayClick(event: CustomEvent) {
+    const { date, count } = event.detail
+    console.log(`Clicked: ${date} with ${count} contributions`)
+  }
+&lt;/script&gt;
+
+&lt;div class="container"&gt;
+  &lt;h2&gt;My Contributions&lt;/h2&gt;
+  
+  &lt;ContributionGraph
+    dataUrl="/data/git-stats.json"
+    {colorScheme}
+    showSettings={true}
+    on:dayClick={handleDayClick}
+  /&gt;
+  
+  &lt;StatsBreakdown
+    dataUrl="/data/git-stats.json"
+    {experienceData}
+    showCustomStat={true}
+  /&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+&lt;/style&gt;</pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>⚙️ Props & Events</h2>
+            
+            <h3 style="font-size: 24px; margin: 24px 0 16px;">ContributionGraph</h3>
+            <div class="code-example">
+                <pre>Props:
+  dataUrl: string = '/data/git-stats.json'
+  profileIndex: number = 0
+  colorScheme: 'green' | 'blue' | 'purple' | 'orange' = 'green'
+  showSettings: boolean = true
+  cacheTTL: number = 24 * 60 * 60 * 1000
+
+Events:
+  on:dayClick - { date: string, count: number }
+  on:colorSchemeChange - ColorScheme
+
+Slots:
+  settings-icon - Custom settings icon</pre>
+            </div>
+            
+            <h3 style="font-size: 24px; margin: 24px 0 16px;">StatsBreakdown</h3>
+            <div class="code-example">
+                <pre>Props:
+  dataUrl: string = '/data/git-stats.json'
+  profileIndexes: number[] = []
+  experienceData: ExperienceEntry[] = []
+  showCustomStat: boolean = true
+  customStatCalculator: Function | null = null
+  cacheTTL: number = 24 * 60 * 60 * 1000
+
+Slots:
+  icon-experience - Custom experience icon (default: ⏱️)
+  icon-projects - Custom projects icon (default: 📦)
+  icon-commits - Custom commits icon (default: 💻)
+  icon-custom - Custom stat icon (default: ☕)
+  custom-stat-label - Custom stat label (default: Coffee Consumed)
+  default - Additional content at bottom</pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎨 Custom Slots Example</h2>
+            <div class="code-example">
+                <pre>&lt;StatsBreakdown dataUrl="/data/git-stats.json"&gt;
+  &lt;div slot="icon-custom"&gt;🚀&lt;/div&gt;
+  &lt;div slot="custom-stat-label"&gt;Rockets Launched&lt;/div&gt;
+  
+  &lt;!-- Additional content --&gt;
+  &lt;p&gt;Check out my GitHub for more projects!&lt;/p&gt;
+&lt;/StatsBreakdown&gt;</pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 Full Documentation</h2>
+            <p style="color: #7d8590; line-height: 1.6;">
+                For complete documentation including TypeScript types, advanced usage, 
+                and more examples, see the 
+                <a href="https://github.com/derekjj/git-stats-components/tree/main/packages/svelte" 
+                   style="color: #ff3e00;">
+                    Svelte package README
+                </a>.
+            </p>
+        </div>
+        
+        <div class="note" style="background: rgba(57, 211, 83, 0.1); border-color: #39d353;">
+            <h3 style="color: #39d353;">💡 Why Use Svelte?</h3>
+            <p>
+                <strong>Smaller bundles:</strong> Svelte compiles away, resulting in tiny bundle sizes<br>
+                <strong>Better performance:</strong> No virtual DOM overhead<br>
+                <strong>Simpler syntax:</strong> Less boilerplate than Vue/React<br>
+                <strong>Reactive by default:</strong> Just assign variables, no useState or ref
+            </p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Made with ❤️ using <a href="https://github.com/derekjj/git-stats-components" target="_blank">@git-stats-components/svelte</a></p>
+    </div>
+</body>
+</html>

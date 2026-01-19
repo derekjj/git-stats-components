@@ -1,0 +1,28 @@
+{
+	"extends": "@tsconfig/svelte/tsconfig.json",
+	"compilerOptions": {
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"checkJs": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"baseUrl": ".",
+		"paths": {
+			"@git-stats-components/core": ["../core/src/index.ts"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.svelte"],
+	"exclude": ["node_modules", "dist"],
+	"references": [
+		{
+			"path": "../core"
+		}
+	]
+}

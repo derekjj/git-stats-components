@@ -1,0 +1,60 @@
+{
+	"name": "@git-stats-components/vue",
+	"version": "0.2.0",
+	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for Vue 3",
+	"author": "Derek Johnston",
+	"license": "MIT",
+	"type": "module",
+	"main": "./dist/vue.umd.js",
+	"module": "./dist/vue.es.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/vue.es.js",
+			"require": "./dist/vue.umd.js"
+		},
+		"./style.css": "./dist/style.css"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"vue",
+		"vue3",
+		"github",
+		"gitlab",
+		"bitbucket",
+		"contributions",
+		"stats",
+		"component"
+	],
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite build --watch",
+		"clean": "rm -rf dist",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:ui": "vitest --ui"
+	},
+	"peerDependencies": {
+		"vue": "^3.3.0"
+	},
+	"dependencies": {
+		"@git-stats-components/core": "workspace:*"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^5.0.0",
+		"@types/node": "^20.10.6",
+		"@vue/test-utils": "^2.4.3",
+		"@testing-library/jest-dom": "^6.1.5",
+		"jsdom": "^23.0.1",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.0",
+		"vite-plugin-dts": "^3.7.0",
+		"vitest": "^1.0.4",
+		"@vitest/ui": "^1.0.4",
+		"vue": "^3.4.0",
+		"vue-tsc": "^2.0.0"
+	}
+}

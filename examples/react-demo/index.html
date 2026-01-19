@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Git Stats Demo</title>
+    <!-- Component stylesheet -->
+    <link rel="stylesheet" href="../../packages/react/dist/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1e26 100%);
+            color: #e6edf3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #61dafb 0%, #58a6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #7d8590;
+            font-size: 18px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: #e6edf3;
+        }
+        
+        .status {
+            padding: 20px;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #58a6ff;
+            margin-bottom: 20px;
+        }
+        
+        .status h3 {
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+        
+        .error {
+            background: rgba(248, 81, 73, 0.1);
+            border-left-color: #f85149;
+        }
+        
+        .error h3 {
+            color: #f85149;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #7d8590;
+        }
+        
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .placeholder {
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #7d8590;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚛️ React Git Stats Demo</h1>
+        <p>Beautiful contribution graphs for React</p>
+    </div>
+    
+    <div class="container">
+        <div class="status" id="status">
+            <h3>⏳ Loading...</h3>
+            <p>Checking for required resources...</p>
+        </div>
+        
+        <div id="root"></div>
+    </div>
+    
+    <div class="footer">
+        <p>Made with ❤️ using <a href="https://github.com/derekjj/git-stats-components" target="_blank">@git-stats-components/react</a></p>
+    </div>
+    
+    <!-- React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Shim for process.env (required by some UMD bundles) -->
+    <script>
+        window.process = window.process || { env: { NODE_ENV: 'production' } };
+    </script>
+    
+    <!-- Load UMD bundle - using correct relative path from /examples/react-demo/ -->
+    <script src="../../packages/react/dist/react.umd.js" onerror="console.error('Failed to load UMD bundle from:', this.src)"></script>
+    
+    <script>
+        const { createElement: h, useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        
+        // Debug: Log what's available
+        console.log('window.GitStatsReact:', window.GitStatsReact);
+        console.log('Current page path:', window.location.pathname);
+        
+        // Mock Components (since external UMD isn't available)
+        const ContributionGraph = ({ colorScheme, onDayClick, onColorSchemeChange }) => {
+            return h('div', { className: 'placeholder' },
+                h('h3', null, '📊 Contribution Graph Component'),
+                h('p', null, `Color Scheme: ${colorScheme}`),
+                h('p', { style: { marginTop: '10px', fontSize: '14px' } }, 
+                    'This would display your GitHub-style contribution graph'),
+                h('div', { style: { marginTop: '20px' } },
+                    h('button', {
+                        onClick: () => onColorSchemeChange('blue'),
+                        style: {
+                            padding: '8px 16px',
+                            marginRight: '8px',
+                            background: '#58a6ff',
+                            border: 'none',
+                            borderRadius: '6px',
+                            color: '#fff',
+                            cursor: 'pointer'
+                        }
+                    }, 'Switch to Blue'),
+                    h('button', {
+                        onClick: () => onColorSchemeChange('green'),
+                        style: {
+                            padding: '8px 16px',
+                            background: '#3fb950',
+                            border: 'none',
+                            borderRadius: '6px',
+                            color: '#fff',
+                            cursor: 'pointer'
+                        }
+                    }, 'Switch to Green')
+                )
+            );
+        };
+        
+        const StatsBreakdown = ({ experienceData }) => {
+            return h('div', { className: 'placeholder' },
+                h('h3', null, '📈 Stats Breakdown Component'),
+                h('p', null, `Experience: ${experienceData[0].skills.join(', ')}`),
+                h('p', { style: { marginTop: '10px', fontSize: '14px' } }, 
+                    'This would display detailed statistics about your contributions')
+            );
+        };
+        
+        function App() {
+            const [colorScheme, setColorScheme] = useState('green');
+            const [status, setStatus] = useState('loading');
+            
+            const experienceData = [
+                {
+                    startDate: '2020-01-01',
+                    endDate: null,
+                    skills: ['JavaScript', 'React', 'TypeScript', 'Node.js']
+                }
+            ];
+            
+            useEffect(() => {
+                // Check if GitStatsReact UMD is available
+                if (window.GitStatsReact) {
+                    setStatus('loaded');
+                    updateStatus('✓ Components loaded successfully', false);
+                } else {
+                    setStatus('mock');
+                    updateStatus('⚠ Using mock components (UMD bundle not found)', true);
+                }
+            }, []);
+            
+            const handleDayClick = (data) => {
+                console.log('Day clicked:', data);
+                if (data.count > 0) {
+                    alert(`${data.count} contributions on ${data.date}`);
+                }
+            };
+            
+            const handleColorSchemeChange = (scheme) => {
+                setColorScheme(scheme);
+                console.log('Color scheme changed to:', scheme);
+            };
+            
+            // Use actual components if available, otherwise use mocks
+            const GraphComponent = window.GitStatsReact?.ContributionGraph || ContributionGraph;
+            const StatsComponent = window.GitStatsReact?.StatsBreakdown || StatsBreakdown;
+            
+            return h('div', null,
+                h('div', { className: 'section' },
+                    h('h2', null, '📊 Contribution Graph'),
+                    h(GraphComponent, {
+                        dataUrl: '/data/dummy-git-stats.json',
+                        colorScheme: colorScheme,
+                        showSettings: true,
+                        onDayClick: handleDayClick,
+                        onColorSchemeChange: handleColorSchemeChange
+                    })
+                ),
+                h('div', { className: 'section' },
+                    h('h2', null, '📈 Stats Breakdown'),
+                    h(StatsComponent, {
+                        dataUrl: '/data/dummy-git-stats.json',
+                        experienceData: experienceData,
+                        showCustomStat: true
+                    })
+                )
+            );
+        }
+        
+        function updateStatus(message, isWarning) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = isWarning ? 'status error' : 'status';
+            statusEl.innerHTML = `
+                <h3>${isWarning ? '⚠ Warning' : '✓ Success'}</h3>
+                <p>${message}</p>
+            `;
+            
+            if (!isWarning) {
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Mount the app
+        const root = createRoot(document.getElementById('root'));
+        root.render(h(App));
+        console.log('✓ React app mounted successfully');
+    </script>
+</body>
+</html>

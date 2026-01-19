@@ -1,0 +1,400 @@
+/* Shared styles for React components */
+/* These match the Vue styles for consistency */
+
+.git-contribution-graph {
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica,
+		Arial, sans-serif;
+	font-size: 12px;
+	background: transparent;
+	color: #e6edf3;
+	padding: 16px;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.graph-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.contribution-count {
+	margin: 0 0 4px 0;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.data-source-text {
+	color: #7d8590;
+}
+
+.data-source-text.is-dummy {
+	color: #f85149;
+	font-weight: 600;
+	background: rgba(248, 81, 73, 0.1);
+	padding: 2px 8px;
+	border-radius: 4px;
+}
+
+.settings-btn {
+	background: transparent;
+	border: 1px solid #30363d;
+	color: #7d8590;
+	padding: 6px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.settings-btn:hover {
+	background: #21262d;
+	color: #e6edf3;
+}
+
+.header-actions {
+	position: relative;
+}
+
+.settings-dropdown {
+	position: absolute;
+	right: 0;
+	top: 100%;
+	margin-top: 4px;
+	background: #21262d;
+	border: 1px solid #30363d;
+	border-radius: 6px;
+	padding: 4px;
+	z-index: 10;
+	min-width: 150px;
+}
+
+.settings-item {
+	display: block;
+	width: 100%;
+	background: transparent;
+	border: none;
+	color: #e6edf3;
+	padding: 8px 12px;
+	text-align: left;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.settings-item:hover {
+	background: #30363d;
+}
+
+.loading-state {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	padding: 40px;
+	color: #7d8590;
+}
+
+.spinner {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #30363d;
+	border-top-color: #58a6ff;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.months-row {
+	display: flex;
+	margin-bottom: 4px;
+}
+
+.month-spacer {
+	width: 27px;
+	flex-shrink: 0;
+}
+
+.months-container {
+	display: grid;
+	grid-template-columns: repeat(53, 11px);
+	gap: 2px;
+	flex: 1;
+	margin-left: 3px;
+	min-width: 0;
+}
+
+.month-label {
+	font-size: 11px;
+	color: #7d8590;
+	text-align: left;
+}
+
+.grid-container {
+	display: flex;
+	gap: 3px;
+	min-width: fit-content;
+}
+
+.day-labels {
+	display: flex;
+	flex-direction: column;
+	width: 24px;
+	gap: 2px;
+	flex-shrink: 0;
+}
+
+.day-label {
+	height: 11px;
+	font-size: 9px;
+	color: #7d8590;
+	display: flex;
+	align-items: center;
+}
+
+.contribution-grid {
+	display: flex;
+	gap: 2px;
+	flex: 1;
+	min-width: 0;
+}
+
+.contribution-week {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex-shrink: 0;
+}
+
+.contribution-day {
+	width: 11px;
+	height: 11px;
+	border-radius: 2px;
+	cursor: pointer;
+	outline: 1px solid rgba(27, 31, 36, 0.06);
+	outline-offset: -1px;
+	flex-shrink: 0;
+}
+
+/* Color schemes */
+.contribution-day.level-0.green {
+	background-color: #161b22;
+}
+.contribution-day.level-1.green {
+	background-color: #0e4429;
+}
+.contribution-day.level-2.green {
+	background-color: #006d32;
+}
+.contribution-day.level-3.green {
+	background-color: #26a641;
+}
+.contribution-day.level-4.green {
+	background-color: #39d353;
+}
+
+.contribution-day.level-0.blue {
+	background-color: #161b22;
+}
+.contribution-day.level-1.blue {
+	background-color: #0a3069;
+}
+.contribution-day.level-2.blue {
+	background-color: #1f6feb;
+}
+.contribution-day.level-3.blue {
+	background-color: #58a6ff;
+}
+.contribution-day.level-4.blue {
+	background-color: #79c0ff;
+}
+
+.contribution-day.level-0.purple {
+	background-color: #161b22;
+}
+.contribution-day.level-1.purple {
+	background-color: #3b1e6d;
+}
+.contribution-day.level-2.purple {
+	background-color: #8250df;
+}
+.contribution-day.level-3.purple {
+	background-color: #a475f9;
+}
+.contribution-day.level-4.purple {
+	background-color: #d2a8ff;
+}
+
+.contribution-day.level-0.orange {
+	background-color: #161b22;
+}
+.contribution-day.level-1.orange {
+	background-color: #7d2d00;
+}
+.contribution-day.level-2.orange {
+	background-color: #da7b00;
+}
+.contribution-day.level-3.orange {
+	background-color: #ffa348;
+}
+.contribution-day.level-4.orange {
+	background-color: #ffb366;
+}
+
+.contribution-day:hover {
+	outline: 1px solid #c9d1d9;
+	outline-offset: -1px;
+}
+
+.graph-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 8px;
+}
+
+.last-updated {
+	color: #7d8590;
+}
+
+.legend {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.legend-label {
+	color: #7d8590;
+}
+
+.legend-squares {
+	display: flex;
+	gap: 2px;
+}
+
+.legend-squares .contribution-day {
+	cursor: default;
+}
+
+.legend-squares .contribution-day:hover {
+	outline: none;
+}
+
+/* Stats Breakdown */
+.git-stats-breakdown {
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica,
+		Arial, sans-serif;
+	padding: 40px 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 24px;
+	margin-bottom: 24px;
+}
+
+.stat-card {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 24px;
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.2);
+	transform: translateY(-2px);
+}
+
+.stat-icon {
+	font-size: 48px;
+	line-height: 1;
+	opacity: 0.9;
+	flex-shrink: 0;
+}
+
+.stat-content {
+	flex: 1;
+	min-width: 0;
+}
+
+.stat-value {
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 1.2;
+	color: #e6edf3;
+	margin-bottom: 4px;
+}
+
+.stat-label {
+	font-size: 14px;
+	color: #7d8590;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.stat-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 38px;
+}
+
+.stats-footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding-top: 16px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-source {
+	font-size: 12px;
+	color: #7d8590;
+	text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+	.git-contribution-graph {
+		padding: 12px;
+		font-size: 11px;
+		overflow-x: auto;
+	}
+
+	.git-stats-breakdown {
+		padding: 20px 12px;
+	}
+
+	.stats-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.stat-card {
+		padding: 16px;
+	}
+
+	.stat-icon {
+		font-size: 36px;
+	}
+
+	.stat-value {
+		font-size: 24px;
+	}
+}

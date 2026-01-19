@@ -1,0 +1,77 @@
+{
+	"name": "git-stats-components",
+	"private": true,
+	"version": "0.2.0",
+	"type": "module",
+	"description": "Multi-framework monorepo for GitHub/GitLab/Bitbucket contribution graphs",
+	"author": "Derek Johnston",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"clean": "pnpm -r exec rm -rf dist && rm -rf dist",
+		"clean:modules": "pnpm -r exec rm -rf node_modules && rm -rf node_modules",
+		"clean:all": "pnpm run clean && pnpm run clean:modules",
+		
+		"build": "pnpm run build:core && pnpm run build:vue && pnpm run build:react && pnpm run build:svelte",
+		"build:core": "pnpm --filter @git-stats-components/core build",
+		"build:vue": "pnpm --filter @git-stats-components/vue build",
+		"build:react": "pnpm --filter @git-stats-components/react build",
+		"build:svelte": "pnpm --filter @git-stats-components/svelte build",
+		
+		"dev:core": "pnpm --filter @git-stats-components/core dev",
+		"dev:vue": "pnpm --filter @git-stats-components/vue dev",
+		"dev:react": "pnpm --filter @git-stats-components/react dev",
+		"dev:svelte": "pnpm --filter @git-stats-components/svelte dev",
+		
+		"test": "pnpm -r --workspace-concurrency=1 test",
+		"test:core": "pnpm --filter @git-stats-components/core test",
+		"test:vue": "pnpm --filter @git-stats-components/vue test",
+		"test:react": "pnpm --filter @git-stats-components/react test",
+		"test:svelte": "pnpm --filter @git-stats-components/svelte test",
+		
+		"type-check": "pnpm -r run type-check",
+		"lint": "pnpm -r run lint",
+		"format": "prettier --write \"packages/*/src/**/*.{ts,vue,tsx,svelte,css}\"",
+		
+		"demo": "node scripts/serve-demos.js",
+		"generate-data": "node scripts/generate-dummy-data.js",
+ 		"demo:build": "pnpm generate-data && pnpm build && echo '\n✨ Ready! Run: pnpm demo'",
+  
+		"prepare": "chmod +x scripts/*.sh scripts/*.js 2>/dev/null || true"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.6",
+		"prettier": "^3.2.0",
+		"typescript": "^5.3.3"
+	},
+	"bin": {
+		"git-stats-components": "./cli/init.js"
+	},
+	"engines": {
+		"node": ">=18.0.0",
+		"pnpm": ">=8.0.0"
+	},
+	"keywords": [
+		"git",
+		"github",
+		"gitlab",
+		"bitbucket",
+		"contributions",
+		"stats",
+		"component",
+		"vue",
+		"react",
+		"svelte",
+		"monorepo"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/derekjj/git-stats-components.git"
+	},
+	"bugs": {
+		"url": "https://github.com/derekjj/git-stats-components/issues"
+	},
+	"homepage": "https://github.com/derekjj/git-stats-components#readme"
+}

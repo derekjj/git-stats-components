@@ -1,0 +1,44 @@
+{
+	"name": "@git-stats-components/core",
+	"version": "0.1.0",
+	"description": "Core logic for git-stats-components - framework-agnostic",
+	"author": "Derek Johnston",
+	"license": "MIT",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
+		},
+		"./*": {
+			"types": "./dist/*/index.d.ts",
+			"import": "./dist/*/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc && node scripts/post-build.js",
+		"dev": "tsc --watch",
+		"test": "vitest",
+		"type-check": "tsc --noEmit",
+		"test:watch": "vitest"
+	},
+	"keywords": [
+		"git",
+		"stats",
+		"contributions",
+		"github",
+		"gitlab",
+		"core"
+	], 
+	"devDependencies": {
+		"@types/node": "^20.10.6",
+		"typescript": "^5.3.3",
+		"vitest": "^1.1.0"
+	}
+}

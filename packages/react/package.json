@@ -1,0 +1,61 @@
+{
+	"name": "@git-stats-components/react",
+	"version": "0.1.0",
+	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for React",
+	"author": "Derek Johnston",
+	"license": "MIT",
+	"type": "module",
+	"main": "./dist/react.umd.js",
+	"module": "./dist/react.es.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/react.es.js",
+			"require": "./dist/react.umd.js"
+		},
+		"./style.css": "./dist/style.css"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"react",
+		"github",
+		"gitlab",
+		"bitbucket",
+		"contributions",
+		"stats",
+		"component"
+	],
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite build --watch",
+		"clean": "rm -rf dist",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:ui": "vitest --ui"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
+	},
+	"dependencies": {
+		"@git-stats-components/core": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
+		"@vitejs/plugin-react": "^4.2.0",
+		"@testing-library/react": "^14.0.0",
+		"@testing-library/jest-dom": "^6.1.5",
+		"jsdom": "^23.0.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.0",
+		"vite-plugin-dts": "^3.7.0",
+		"vitest": "^1.0.4",
+		"@vitest/ui": "^1.0.4"
+	}
+}
