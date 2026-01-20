@@ -177,7 +177,7 @@ const customStatValue = computed(() => {
 
 .stats-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(4, 1fr); /* Always 4 columns on desktop */
 	gap: 24px;
 	margin-bottom: 24px;
 }
@@ -264,12 +264,12 @@ const customStatValue = computed(() => {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
 	.git-stats-breakdown {
 		padding: 20px 12px;
 	}
 	.stats-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
 		gap: 16px;
 	}
 	.stat-card {
@@ -287,6 +287,9 @@ const customStatValue = computed(() => {
 }
 
 @media (max-width: 480px) {
+	.stats-grid {
+		grid-template-columns: 1fr; /* 1 column on mobile */
+	}
 	.stat-card {
 		flex-direction: column;
 		text-align: center;

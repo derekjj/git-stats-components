@@ -111,9 +111,23 @@
 	}
 }
 
+.grid-container {
+	display: flex;
+	gap: 3px;
+	width: fit-content; /* Changed from min-width: fit-content */
+}
+
+.graph-content-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
 .months-row {
 	display: flex;
 	margin-bottom: 4px;
+	width: fit-content; /* Only as wide as needed */
 }
 
 .month-spacer {
@@ -298,7 +312,7 @@
 
 .stats-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(4, 1fr); /* Changed from auto-fit to fixed 4 columns */
 	gap: 24px;
 	margin-bottom: 24px;
 }
@@ -370,7 +384,8 @@
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
+/* Mobile responsive */
+@media (max-width: 1400px) {
 	.git-contribution-graph {
 		padding: 12px;
 		font-size: 11px;
@@ -382,7 +397,7 @@
 	}
 
 	.stats-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
 		gap: 16px;
 	}
 
@@ -396,5 +411,20 @@
 
 	.stat-value {
 		font-size: 24px;
+	}
+}
+
+@media (max-width: 480px) {
+	.stats-grid {
+		grid-template-columns: 1fr; /* 1 column on mobile */
+	}
+
+	.stat-card {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.stat-content {
+		width: 100%;
 	}
 }
