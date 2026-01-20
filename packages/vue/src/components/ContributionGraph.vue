@@ -103,11 +103,11 @@
 				<div class="legend">
 					<small class="legend-label">Less</small>
 					<div class="legend-squares">
-						<div class="contribution-day level-0"></div>
-						<div class="contribution-day level-1"></div>
-						<div class="contribution-day level-2"></div>
-						<div class="contribution-day level-3"></div>
-						<div class="contribution-day level-4"></div>
+						<div :class="currentColorScheme + ' contribution-day level-0'"></div>
+						<div :class="currentColorScheme + ' contribution-day level-1'"></div>
+						<div :class="currentColorScheme + ' contribution-day level-2'"></div>
+						<div :class="currentColorScheme + ' contribution-day level-3'"></div>
+						<div :class="currentColorScheme + ' contribution-day level-4'"></div>
 					</div>
 					<small class="legend-label">More</small>
 				</div>
