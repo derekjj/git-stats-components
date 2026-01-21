@@ -180,8 +180,8 @@ npm test
 
 ```vue
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 </script>
 
 <template>

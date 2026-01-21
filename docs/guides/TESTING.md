@@ -5,7 +5,7 @@
 ### 1. Generate Dummy Data
 
 ```javascript
-import { generateDummyStats, saveDummyDataToFile } from 'vue-git-stats'
+import { generateDummyStats, saveDummyDataToFile } from '@git-stats-components/vue'
 
 // Generate and save dummy data
 const dummyData = generateDummyStats({
@@ -40,8 +40,8 @@ console.log(JSON.stringify(dummyData, null, 2))
 </template>
 
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 
 const experienceData = [
 	{
@@ -97,11 +97,11 @@ This makes it clear you're not looking at real data yet.
 
 ```javascript
 // Check if package is installed
-import { ContributionGraph } from 'vue-git-stats'
+import { ContributionGraph } from '@git-stats-components/vue'
 console.log('Component:', ContributionGraph)
 
 // Check if data is loading
-import { useGitStats } from 'vue-git-stats'
+import { useGitStats } from '@git-stats-components/vue'
 const { data, loading, error, isDummy } = useGitStats({
 	dataUrl: '/data/git-stats.json',
 })
@@ -113,7 +113,7 @@ console.log({ data, loading, error, isDummy })
 Make sure you're importing the CSS:
 
 ```javascript
-import 'vue-git-stats/style.css'
+import '@git-stats-components/vue/style.css'
 ```
 
 Or check in your browser DevTools that `style.css` is loaded.
@@ -155,7 +155,7 @@ Run this script to create dummy data in your project:
 
 ```javascript
 // scripts/generate-dummy-data.js
-import { generateDummyStats } from 'vue-git-stats'
+import { generateDummyStats } from '@git-stats-components/vue'
 import fs from 'fs'
 
 const data = generateDummyStats({
@@ -178,9 +178,9 @@ node scripts/generate-dummy-data.js
 
 ## Common Issues
 
-### "Cannot find module 'vue-git-stats'"
+### "Cannot find module '@git-stats-components/vue'"
 
-- Run `npm install vue-git-stats`
+- Run `npm install @git-stats-components/vue`
 - Restart dev server
 - Clear node_modules cache: `rm -rf node_modules && npm install`
 
@@ -201,7 +201,7 @@ node scripts/generate-dummy-data.js
 
 Once dummy data works:
 
-1. Run `npx vue-git-stats init` to create workflow
+1. Run `npx @git-stats-components/vue init` to create workflow
 2. Configure `git-stats.config.js`
 3. Add GitHub secrets
 4. Trigger workflow manually

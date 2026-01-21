@@ -1,6 +1,9 @@
 # @git-stats-components/vue
 
-Beautiful GitHub/GitLab/Bitbucket contribution graphs for Vue 3.
+> Beautiful contribution graphs for Vue 3
+
+[![npm version](https://img.shields.io/npm/v/@git-stats-components/vue.svg)](https://www.npmjs.com/package/@git-stats-components/vue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
@@ -46,14 +49,26 @@ GitHub-style contribution heatmap.
 **Example:**
 
 ```vue
-<ContributionGraph
-  data-url="/data/git-stats.json"
-  :profile-index="0"
-  color-scheme="blue"
-  :show-settings="true"
-  @day-click="handleDayClick"
-  @color-scheme-change="handleColorChange"
-/>
+<template>
+  <ContributionGraph
+    data-url="/data/git-stats.json"
+    :profile-index="0"
+    color-scheme="blue"
+    :show-settings="true"
+    @day-click="handleDayClick"
+    @color-scheme-change="handleColorChange"
+  />
+</template>
+
+<script setup>
+const handleDayClick = (data) => {
+  console.log('Clicked:', data)
+}
+
+const handleColorChange = (scheme) => {
+  console.log('Color scheme:', scheme)
+}
+</script>
 ```
 
 ### StatsBreakdown
@@ -106,7 +121,9 @@ function calculatePizzas({ projects, commits, years }) {
 </template>
 ```
 
-## Using the Composable
+## Composable
+
+Access data and state directly with the `useGitStats` composable:
 
 ```vue
 <script setup>
@@ -182,10 +199,9 @@ Then use without imports:
 </template>
 ```
 
-## Nuxt 3 Usage
+## Nuxt 3
 
 ```vue
-<!-- pages/index.vue -->
 <script setup lang="ts">
 import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
 import '@git-stats-components/vue/style.css'
@@ -207,9 +223,9 @@ const experienceData = [
 </template>
 ```
 
-## Custom Styling
+## Styling
 
-Override CSS variables:
+Override CSS variables for custom theming:
 
 ```css
 .git-contribution-graph {
@@ -224,11 +240,11 @@ Override CSS variables:
 }
 ```
 
-## Data Setup
+## Setup
 
-## Quick Setup
+### Quick Setup
 
-### 1. Initialize in your project
+Initialize in your project:
 
 ```bash
 npx @git-stats-components/vue init
@@ -239,7 +255,7 @@ This creates:
 - `.github/workflows/update-git-stats.yml` - GitHub Action workflow
 - `public/data/` - Directory for stats data
 
-### 2. Configure your profiles
+### Configuration
 
 Edit `git-stats.config.js`:
 
@@ -257,16 +273,14 @@ export default {
 }
 ```
 
-### 3. Add GitHub Secrets
+### Add Secrets
 
 Go to **Settings → Secrets and variables → Actions** and add your tokens.
 
-### 4. Done!
-
-The GitHub Action will fetch your stats daily and save them to the JSON file. Your components will load this data automatically.
+That's it! The GitHub Action will fetch your stats daily.
 
 For more details, see the main [git-stats-components](https://github.com/derekjj/git-stats-components) repository.
 
 ## License
 
-MIT © Derek Johnston
+MIT © [Derek Johnston](https://github.com/derekjj)

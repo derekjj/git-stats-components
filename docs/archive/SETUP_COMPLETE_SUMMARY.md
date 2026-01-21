@@ -12,7 +12,7 @@ Congratulations! You now have a complete multi-framework monorepo.
     - Helper functions (formatLastUpdated, getContributionLevel, etc.)
     - Dummy data generator
 
-2. **vue-git-stats** - Vue 3 components
+2. **@git-stats-components/vue** - Vue 3 components
     - ContributionGraph component
     - StatsBreakdown component
     - useGitStats composable
@@ -37,7 +37,7 @@ Congratulations! You now have a complete multi-framework monorepo.
        │               │
        ▼               ▼
 ┌─────────────┐  ┌──────────────────────┐
-│ vue-git-stats│  │@git-stats-components/│
+│ @git-stats-components/vue│  │@git-stats-components/│
 │              │  │      react           │
 │ (Vue wrapper)│  │  (React wrapper)     │
 └─────────────┘  └──────────────────────┘
@@ -123,13 +123,13 @@ git-stats-components/
 ### Vue 3
 
 ```bash
-npm install vue-git-stats
+npm install @git-stats-components/vue
 ```
 
 ```vue
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 </script>
 
 <template>
@@ -187,7 +187,7 @@ function App() {
 
 1. 🚀 Publish to npm:
     - `@git-stats-components/core`
-    - `vue-git-stats` (update existing)
+    - `@git-stats-components/vue` (update existing)
     - `@git-stats-components/react` (new)
 2. 📚 Create example projects:
     - Vue 3 example
@@ -221,7 +221,7 @@ Before moving forward, verify:
 - [ ] All packages have `dist/` folders after build
 - [ ] `packages/core/dist/index.js` exists
 - [ ] `packages/core/dist/index.d.ts` exists
-- [ ] `packages/vue/dist/vue-git-stats.es.js` exists
+- [ ] `packages/vue/dist/vue.es.js` exists
 - [ ] `packages/vue/dist/style.css` exists
 - [ ] `packages/react/dist/react.es.js` exists
 - [ ] `packages/react/dist/style.css` exists
@@ -239,7 +239,7 @@ Before moving forward, verify:
     npm link
 
     cd ~/my-project
-    npm link vue-git-stats
+    npm link @git-stats-components/vue
     ```
 
 3. **Versioning**: Use Lerna or Changesets for managing versions across packages

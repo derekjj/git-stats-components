@@ -6,7 +6,7 @@ Side-by-side comparison of how to use git-stats-components in different framewor
 
 | Framework | Package Name                  | Command                                   |
 | --------- | ----------------------------- | ----------------------------------------- |
-| Vue 3     | `vue-git-stats`               | `npm install vue-git-stats`               |
+| Vue 3     | `@git-stats-components/vue`               | `npm install @git-stats-components/vue`               |
 | React     | `@git-stats-components/react` | `npm install @git-stats-components/react` |
 
 ## Basic Usage
@@ -15,8 +15,8 @@ Side-by-side comparison of how to use git-stats-components in different framewor
 
 ```vue
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 
 const handleDayClick = (data) => {
 	console.log('Clicked:', data)
@@ -73,7 +73,7 @@ function App() {
 
 ```vue
 <script setup>
-import { useGitStats } from 'vue-git-stats'
+import { useGitStats } from '@git-stats-components/vue'
 
 const { data, loading, error, dataSourceText, lastUpdatedText, isDummy } =
 	useGitStats({
@@ -152,7 +152,7 @@ import type {
 	ColorScheme,
 	ExperienceEntry,
 	CustomStatCalculator,
-} from 'vue-git-stats'
+} from '@git-stats-components/vue'
 
 const colorScheme: ColorScheme = 'green'
 
@@ -208,8 +208,8 @@ const customCalculator: CustomStatCalculator = ({
 
 ```typescript
 import { createApp } from 'vue'
-import VueGitStats from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import VueGitStats from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -259,11 +259,11 @@ import { ContributionGraph, StatsBreakdown } from '@git-stats-components/react'
 ```typescript
 // nuxt.config.ts
 export default defineNuxtConfig({
-	modules: ['vue-git-stats/nuxt'], // If you create a Nuxt module
+	modules: ['@git-stats-components/vue/nuxt'], // If you create a Nuxt module
 
 	// Or manual import
 	build: {
-		transpile: ['vue-git-stats'],
+		transpile: ['@git-stats-components/vue'],
 	},
 })
 ```
@@ -334,7 +334,7 @@ import {
 	formatLastUpdated,
 	getContributionLevel,
 	calculateYearsExperience,
-} from 'vue-git-stats' // or '@git-stats-components/react'
+} from '@git-stats-components/vue' // or '@git-stats-components/react'
 
 // These utilities work the same in both frameworks
 const dummyData = generateDummyStats()

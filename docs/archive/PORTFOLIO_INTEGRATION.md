@@ -1,17 +1,17 @@
-# Integrating vue-git-stats into Your Portfolio
+# Integrating @git-stats-components/vue into Your Portfolio
 
-This guide shows how to integrate `vue-git-stats` into your existing portfolio.
+This guide shows how to integrate `@git-stats-components/vue` into your existing portfolio.
 
 ## Installation
 
 ```bash
-npm install vue-git-stats
+npm install @git-stats-components/vue
 ```
 
 ## Initialize
 
 ```bash
-npx vue-git-stats init
+npx @git-stats-components/vue init
 ```
 
 This creates:
@@ -71,7 +71,7 @@ export default {
 </script>
 ```
 
-**After (using vue-git-stats):**
+**After (using @git-stats-components/vue):**
 
 ```vue
 <template lang="pug">
@@ -92,8 +92,8 @@ export default {
 </template>
 
 <script>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 import jsonAbout from '@/assets/about.json'
 
 export default {
@@ -215,8 +215,8 @@ section.gitlab-stats
 
 ## Migration Checklist
 
-- [ ] Install `vue-git-stats`
-- [ ] Run `npx vue-git-stats init`
+- [ ] Install `@git-stats-components/vue`
+- [ ] Run `npx @git-stats-components/vue init`
 - [ ] Update `git-stats.config.js` with your usernames
 - [ ] Add GitHub secrets (GITHUB_TOKEN auto-exists, add GITLAB_TOKEN if needed)
 - [ ] Update components in your pages
@@ -230,14 +230,14 @@ section.gitlab-stats
 
 ## Troubleshooting
 
-### "Module not found: vue-git-stats"
+### "Module not found: @git-stats-components/vue"
 
-- Run `npm install vue-git-stats`
+- Run `npm install @git-stats-components/vue`
 - Restart your dev server
 
 ### Styles look wrong
 
-- Import the CSS: `import 'vue-git-stats/style.css'`
+- Import the CSS: `import '@git-stats-components/vue/style.css'`
 - Check that CSS is loading in browser DevTools
 
 ### Data not loading
@@ -274,4 +274,4 @@ Your existing dark theme, colors, and spacing will automatically apply!
 
 ---
 
-Need help? Open an issue on the vue-git-stats repo!
+Need help? Open an issue on the @git-stats-components/vue repo!

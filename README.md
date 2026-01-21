@@ -1,43 +1,43 @@
 # git-stats-components
 
-> Beautiful GitHub/GitLab/Bitbucket contribution graphs for Vue 3, React, and Svelte
+> Beautiful contribution graphs for Vue 3, React, and Svelte-powered by GitHub, GitLab, and Bitbucket
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🎯 Multi-Framework Support
+![Git Stats Components](./screenshot-black.png)
 
-This is a **monorepo** containing framework-specific packages:
+## Features
 
-| Package | Framework | Status |
-|---------|-----------|--------|
-| **vue-git-stats** | Vue 3 | ✅ Ready |
-| **@git-stats-components/react** | React | ✅ Ready |
-| **@git-stats-components/svelte** | Svelte | ✅ Ready |
-| **@git-stats-components/core** | Agnostic | ✅ Ready |
-
-## ✨ Features
-
-- 🎨 **Multiple Platforms** - GitHub, GitLab, Bitbucket
-- 🎯 **Framework-Agnostic Core** - Shared logic across all packages
+- 🎨 **Multi-Platform** - GitHub, GitLab, and Bitbucket support
 - ⚡ **Zero Runtime API Calls** - Static data via GitHub Actions
-- 🛡️ **Multi-Tier Fallback** - Static → Cache → Mock data
+- 🛡️ **Always Works** - Multi-tier fallback system (static → cache → mock)
 - 📱 **Responsive** - Mobile-friendly with touch support
-- 🎨 **Customizable** - Multiple color schemes and slots
+- 🎯 **Framework-Agnostic Core** - Shared logic across all packages
+- 🎨 **Customizable** - Multiple color schemes and component slots
 - 🔧 **Type Safe** - Full TypeScript support
 - 🧪 **Well Tested** - Comprehensive test coverage
 
-## 🚀 Quick Start
+## Packages
+
+| Package | Framework | Status |
+|---------|-----------|--------|
+| [@git-stats-components/vue](./packages/vue) | Vue 3 | [![npm](https://img.shields.io/npm/v/@git-stats-components/vue.svg)](https://www.npmjs.com/package/@git-stats-components/vue) |
+| [@git-stats-components/react](./packages/react) | React | [![npm](https://img.shields.io/npm/v/@git-stats-components/react.svg)](https://www.npmjs.com/package/@git-stats-components/react) |
+| [@git-stats-components/svelte](./packages/svelte) | Svelte | [![npm](https://img.shields.io/npm/v/@git-stats-components/svelte.svg)](https://www.npmjs.com/package/@git-stats-components/svelte) |
+| [@git-stats-components/core](./packages/core) | Agnostic | [![npm](https://img.shields.io/npm/v/@git-stats-components/core.svg)](https://www.npmjs.com/package/@git-stats-components/core) |
+
+## Quick Start
 
 ### Vue 3
 
 ```bash
-npm install vue-git-stats
+npm install @git-stats-components/vue
 ```
 
 ```vue
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 </script>
 
 <template>
@@ -46,7 +46,7 @@ import 'vue-git-stats/style.css'
 </template>
 ```
 
-[Full Vue Documentation →](./packages/vue/README.md)
+[📖 Vue Documentation](./packages/vue/README.md)
 
 ### React
 
@@ -68,7 +68,7 @@ function App() {
 }
 ```
 
-[Full React Documentation →](./packages/react/README.md)
+[📖 React Documentation](./packages/react/README.md)
 
 ### Svelte
 
@@ -85,9 +85,68 @@ npm install @git-stats-components/svelte
 <StatsBreakdown dataUrl="/data/git-stats.json" />
 ```
 
-[Full Svelte Documentation →](./packages/svelte/README.md)
+[📖 Svelte Documentation](./packages/svelte/README.md)
 
-## 🎨 Live Demos
+## How It Works
+
+1. **GitHub Actions** fetches your stats daily (or on-demand)
+2. **Static JSON file** is generated and committed to your repo
+3. **Components load** from the static file (fast & reliable)
+4. **Fallback system** ensures it always works (cache → mock data)
+
+### Why This Approach?
+
+- ✅ **No runtime API calls** - Visitors never hit rate limits
+- ✅ **Fast loading** - Static file loads instantly
+- ✅ **Never breaks** - Always has fallback data
+- ✅ **Free tier friendly** - One API call per day vs thousands
+- ✅ **Works offline** - Can develop with cached/mock data
+
+## Setup
+
+The easiest way to get started is using the CLI tool:
+
+```bash
+# Install your framework package
+npm install @git-stats-components/vue
+
+# Initialize config and GitHub Actions
+npx @git-stats-components/vue init
+```
+
+This creates:
+- `git-stats.config.js` - Configuration file
+- `.github/workflows/update-git-stats.yml` - GitHub Actions workflow
+- `public/data/` - Directory for stats data
+
+### Configuration
+
+Edit `git-stats.config.js`:
+
+```javascript
+export default {
+  profiles: [
+    {
+      username: 'your-github-username',
+      platform: 'github',
+      tokenSecret: 'GITHUB_TOKEN'
+    }
+  ],
+  dataPath: 'public/data/git-stats.json',
+  schedule: '0 2 * * *' // Daily at 2 AM UTC
+}
+```
+
+### Add Secrets
+
+Go to **Settings → Secrets and variables → Actions** and add:
+- `GITHUB_TOKEN` - Your GitHub Personal Access Token
+- `GITLAB_TOKEN` - (Optional) Your GitLab access token
+- `BITBUCKET_TOKEN` - (Optional) Your Bitbucket app password
+
+That's it! The GitHub Action will fetch your stats daily.
+
+## Live Demo
 
 Want to see it in action? Clone this repo and run:
 
@@ -97,26 +156,19 @@ pnpm build
 pnpm demo
 ```
 
-Then visit http://localhost:3000 to see demos for all frameworks!
+Then visit http://localhost:3000
 
-## 📦 Monorepo Structure
+## Platform Support
 
-```
-git-stats-components/
-├── packages/
-│   ├── core/           # Framework-agnostic logic
-│   ├── vue/            # Vue 3 components
-│   ├── react/          # React components
-│   └── svelte/         # Svelte components
-├── examples/           # Live demos
-│   ├── vue-demo/
-│   ├── react-demo/
-│   └── svelte-demo/
-├── cli/                # CLI initialization tool
-└── templates/          # Config templates
-```
+| Platform | Contribution Graph | Stats |
+|----------|-------------------|-------|
+| GitHub | ✅ | ✅ |
+| GitLab | ❌* | ✅ |
+| Bitbucket | ❌* | ✅ |
 
-## 🔧 Development
+*GitLab and Bitbucket APIs don't provide contribution graph data
+
+## Development
 
 ### Prerequisites
 
@@ -126,24 +178,13 @@ git-stats-components/
 ### Setup
 
 ```bash
-# Clone the repo
 git clone https://github.com/derekjj/git-stats-components.git
-cd vue-git-stats
-
-# Install dependencies
+cd git-stats-components
 pnpm install
-
-# Build all packages
 pnpm build
-
-# Run tests
-pnpm test
-
-# Start demo server
-pnpm demo
 ```
 
-### Build Commands
+### Commands
 
 ```bash
 # Build all packages
@@ -159,83 +200,34 @@ pnpm build:svelte
 pnpm dev:vue
 pnpm dev:react
 pnpm dev:svelte
-```
 
-### Testing
-
-```bash
-# Run all tests
+# Run tests
 pnpm test
-
-# Run specific package tests
-pnpm test:core
-pnpm test:vue
-pnpm test:react
-pnpm test:svelte
 ```
 
-## 📚 Documentation
+## Contributing
 
-- [Framework Comparison Guide](./docs/FRAMEWORK_COMPARISON.md) - Detailed comparison of Vue, React, and Svelte usage
-- [Testing Guide](./docs/guides/TESTING.md) - How to test with dummy data
-- [TypeScript Guide](./docs/guides/typescript.md) - Full TypeScript usage
+Contributions are welcome! Please see our [Contributing Guide](./CONTRIBUTING.md).
 
-## 🎯 How It Works
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes
+4. Run tests: `pnpm test`
+5. Build packages: `pnpm build`
+6. Commit: `git commit -m 'feat: add amazing feature'`
+7. Push: `git push origin feature/amazing-feature`
+8. Open a Pull Request
 
-1. **GitHub Actions** fetches your stats daily (or on-demand)
-2. **Static JSON file** is generated and committed to your repo
-3. **Components load** from the static file (fast, reliable)
-4. **Fallback system** ensures it always works (cache → mock data)
+## License
 
-### Why This Approach?
+MIT © [Derek Johnston](https://derekjohnston.ca/)
 
-- ✅ **No runtime API calls** - Visitors never hit rate limits
-- ✅ **Fast loading** - Static file loads instantly
-- ✅ **Never breaks** - Always has fallback data
-- ✅ **Free tier friendly** - One API call per day vs thousands
-- ✅ **Works offline** - Can develop with cached/mock data
+## Links
 
-## 🛠️ CLI Tool
-
-Initialize in your project:
-
-```bash
-npx vue-git-stats init
-```
-
-This creates:
-- `git-stats.config.js` - Configuration file
-- `.github/workflows/update-git-stats.yml` - GitHub Actions workflow
-- `public/data/` - Directory for stats data
-
-## 🔑 Platform Support
-
-| Platform | Contribution Graph | Project Count | Commit Count |
-|----------|-------------------|---------------|--------------|
-| GitHub | ✅ | ✅ | ✅ |
-| GitLab | ❌* | ✅ | ✅ |
-| Bitbucket | ❌* | ✅ | ✅ |
-
-*GitLab and Bitbucket APIs don't provide contribution graph data
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.md).
-
-### Code of Conduct
-
-Be respectful, inclusive, and constructive.
-
-## 📄 License
-
-MIT © Derek Johnston
-
-## 🙏 Support
-
-- 🐛 [Report a bug](https://github.com/derekjj/git-stats-components/issues)
-- 💡 [Request a feature](https://github.com/derekjj/git-stats-components/issues)
-- ⭐ [Star the repo](https://github.com/derekjj/git-stats-components)
+- [GitHub Repository](https://github.com/derekjj/git-stats-components)
+- [Report a Bug](https://github.com/derekjj/git-stats-components/issues/new?labels=bug)
+- [Request a Feature](https://github.com/derekjj/git-stats-components/issues/new?labels=enhancement)
 
 ---
 
-Made with ❤️ for developers, by developers
+Made with ❤️ by developers, for developers

@@ -1,6 +1,9 @@
 # @git-stats-components/svelte
 
-Beautiful GitHub/GitLab/Bitbucket contribution graphs for Svelte.
+> Beautiful contribution graphs for Svelte
+
+[![npm version](https://img.shields.io/npm/v/@git-stats-components/svelte.svg)](https://www.npmjs.com/package/@git-stats-components/svelte)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
@@ -126,40 +129,25 @@ Full TypeScript support with exported types:
 
 ```typescript
 import type {
-	GitStatsData,
-	ColorScheme,
-	Platform,
-	ExperienceEntry,
-	CustomStatCalculator,
+  GitStatsData,
+  ColorScheme,
+  Platform,
+  ExperienceEntry,
+  CustomStatCalculator,
 } from '@git-stats-components/svelte'
 
 let colorScheme: ColorScheme = 'green'
 
 const experienceData: ExperienceEntry[] = [
-	{
-		startDate: '2020-01-01',
-		endDate: null,
-		skills: ['JavaScript', 'Svelte'],
-	},
+  {
+    startDate: '2020-01-01',
+    endDate: null,
+    skills: ['JavaScript', 'Svelte'],
+  },
 ]
 ```
 
-## Styling
-
-Components use scoped styles but you can override using global styles:
-
-```css
-/* In your global CSS */
-:global(.git-contribution-graph) {
-	/* Custom styles */
-}
-
-:global(.contribution-day.level-4.green) {
-	background-color: #00ff00 !important;
-}
-```
-
-## SvelteKit Usage
+## SvelteKit
 
 ```svelte
 <!-- +page.svelte -->
@@ -176,7 +164,7 @@ Components use scoped styles but you can override using global styles:
 
 ## Reactive Props
 
-All props are reactive - update them and the component updates:
+All props are reactive-update them and the component updates:
 
 ```svelte
 <script>
@@ -193,10 +181,62 @@ All props are reactive - update them and the component updates:
 <ContributionGraph {colorScheme} />
 ```
 
-## Data Setup
+## Styling
 
-See the main [vue-git-stats](https://github.com/derekjj/git-stats-components) repository for setup instructions on generating the data file via GitHub Actions.
+Components use scoped styles but you can override using global styles:
+
+```css
+/* In your global CSS */
+:global(.git-contribution-graph) {
+  /* Custom styles */
+}
+
+:global(.contribution-day.level-4.green) {
+  background-color: #00ff00 !important;
+}
+```
+
+## Setup
+
+### Quick Setup
+
+Initialize in your project:
+
+```bash
+npx @git-stats-components/svelte init
+```
+
+This creates:
+- `git-stats.config.js` - Configuration file
+- `.github/workflows/update-git-stats.yml` - GitHub Action workflow
+- `public/data/` - Directory for stats data
+
+### Configuration
+
+Edit `git-stats.config.js`:
+
+```javascript
+export default {
+  profiles: [
+    {
+      username: 'your-github-username',
+      platform: 'github',
+      tokenSecret: 'GITHUB_TOKEN'
+    }
+  ],
+  dataPath: 'public/data/git-stats.json',
+  schedule: '0 2 * * *' // Daily at 2 AM UTC
+}
+```
+
+### Add Secrets
+
+Go to **Settings → Secrets and variables → Actions** and add your tokens.
+
+That's it! The GitHub Action will fetch your stats daily.
+
+For more details, see the main [git-stats-components](https://github.com/derekjj/git-stats-components) repository.
 
 ## License
 
-MIT © Derek Johnston
+MIT © [Derek Johnston](https://github.com/derekjj)

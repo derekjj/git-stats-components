@@ -7,7 +7,7 @@ Complete guide to setting up Vue, React, and Svelte packages from scratch.
 A complete monorepo with **4 packages**:
 
 1. **@git-stats-components/core** - Framework-agnostic logic
-2. **vue-git-stats** - Vue 3 components
+2. **@git-stats-components/vue** - Vue 3 components
 3. **@git-stats-components/react** - React components
 4. **@git-stats-components/svelte** - Svelte components
 
@@ -133,7 +133,7 @@ ls packages/core/dist/
 
 ```bash
 ls packages/vue/dist/
-# Should see: vue-git-stats.es.js, vue-git-stats.umd.js, index.d.ts, style.css
+# Should see: vue.es.js, @git-stats-components/vue.umd.js, index.d.ts, style.css
 ```
 
 ### React Package
@@ -155,13 +155,13 @@ ls packages/svelte/dist/
 ### Vue 3
 
 ```bash
-npm install vue-git-stats
+npm install @git-stats-components/vue
 ```
 
 ```vue
 <script setup>
-import { ContributionGraph, StatsBreakdown } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph, StatsBreakdown } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 </script>
 
 <template>
@@ -314,7 +314,7 @@ You're done when:
     cd packages/vue
     npm link
     cd ~/my-test-project
-    npm link vue-git-stats
+    npm link @git-stats-components/vue
     ```
 
 3. **Versioning:** Use [Changesets](https://github.com/changesets/changesets) for managing versions across packages

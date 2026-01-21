@@ -116,8 +116,8 @@ packages/core/dist/
   └── index.d.ts.map
 
 packages/vue/dist/
-  ├── vue-git-stats.es.js
-  ├── vue-git-stats.umd.js
+  ├── vue.es.js
+  ├── vue.umd.js
   ├── index.d.ts
   └── style.css
 ```
@@ -138,8 +138,8 @@ import { useGitStats } from '../../src/composables/useGitStats'
 **After:**
 
 ```typescript
-import { generateDummyStats } from 'vue-git-stats'
-import { useGitStats } from 'vue-git-stats'
+import { generateDummyStats } from '@git-stats-components/vue'
+import { useGitStats } from '@git-stats-components/vue'
 ```
 
 ### Run tests
@@ -157,10 +157,10 @@ If you want to update the demo to use the built packages:
 ```html
 <script type="module">
 	// Change from:
-	import VueGitStats from '../dist/vue-git-stats.es.js'
+	import VueGitStats from '../dist/vue/vue.es.js'
 
 	// To:
-	import VueGitStats from '../packages/vue/dist/vue-git-stats.es.js'
+	import VueGitStats from '../packages/vue/dist/vue/vue.es.js'
 </script>
 ```
 
@@ -224,7 +224,7 @@ npm install
 **Solution:** Update import paths in test files to use the package names:
 
 ```typescript
-import { generateDummyStats } from 'vue-git-stats'
+import { generateDummyStats } from '@git-stats-components/vue'
 ```
 
 ## What You Now Have

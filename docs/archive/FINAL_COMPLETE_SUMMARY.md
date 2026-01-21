@@ -7,7 +7,7 @@ A **complete, production-ready multi-framework component library** with:
 ### 📦 4 Packages
 
 1. **@git-stats-components/core** (5 KB) - Framework-agnostic
-2. **vue-git-stats** (8 KB) - Vue 3 components
+2. **@git-stats-components/vue** (8 KB) - Vue 3 components
 3. **@git-stats-components/react** (8 KB) - React components
 4. **@git-stats-components/svelte** (7 KB) - Svelte components
 
@@ -146,8 +146,8 @@ npm test
 
 ```vue
 <script setup>
-import { ContributionGraph } from 'vue-git-stats'
-import 'vue-git-stats/style.css'
+import { ContributionGraph } from '@git-stats-components/vue'
+import '@git-stats-components/vue/style.css'
 </script>
 
 <template>

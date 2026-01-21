@@ -49,7 +49,7 @@ pnpm build
 Expected output:
 ```
 ✓ Built @git-stats-components/core
-✓ Built vue-git-stats
+✓ Built @git-stats-components/vue
 ✓ Built @git-stats-components/react
 ✓ Built @git-stats-components/svelte
 ```
@@ -140,7 +140,7 @@ git-stats-components/
 │   ├── core/dist/
 │   │   └── index.js            ← Should exist after build
 │   ├── vue/dist/
-│   │   ├── vue-git-stats.es.js ← Vue bundle
+│   │   ├── vue/vue.es.js ← Vue bundle
 │   │   └── style.css           ← Vue styles
 │   ├── react/dist/
 │   │   ├── react.es.js         ← React ESM bundle
@@ -200,7 +200,7 @@ After build:
 
 ```
 core:   ~15 KB (index.js)
-vue:    ~25 KB (vue-git-stats.es.js)
+vue:    ~25 KB (vue/vue.es.js)
 react:  ~25 KB (react.es.js)
 svelte: ~20 KB (index.js)
 ```

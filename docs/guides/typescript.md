@@ -1,6 +1,6 @@
 ## TypeScript Support
 
-vue-git-stats is written in TypeScript and exports all types for full type safety.
+@git-stats-components/vue is written in TypeScript and exports all types for full type safety.
 
 ### Using with TypeScript
 
@@ -12,7 +12,7 @@ import {
   type GitStatsData,
   type ColorScheme,
   type Platform
-} from 'vue-git-stats'
+} from '@git-stats-components/vue'
 
 // Component usage with type-safe props
 <ContributionGraph
@@ -64,7 +64,7 @@ export interface GitStatsConfig {
 ### Custom Stat Calculator with Types
 
 ```typescript
-import type { CustomStatCalculator } from 'vue-git-stats'
+import type { CustomStatCalculator } from '@git-stats-components/vue'
 
 const calculatePizzas: CustomStatCalculator = ({ projects, commits, years }) => {
   return (projects * 2 + commits * 0.5 + years * 100).toFixed(0)
@@ -88,5 +88,5 @@ import type {
 	ContributionDay,
 	ExperienceEntry,
 	CustomStatCalculator,
-} from 'vue-git-stats'
+} from '@git-stats-components/vue'
 ```
