@@ -5,6 +5,10 @@
 [![npm version](https://img.shields.io/npm/v/@git-stats-components/vue.svg)](https://www.npmjs.com/package/@git-stats-components/vue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Demo
+
+[View Live Demo](https://derekjohnston.ca/demo)
+
 ![Git Stats Components](./../../screenshot-contribution-graph-black.png)
 ![Git Stats Components](./../../screenshot-stats-breakdown-black.png)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/core",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Core logic for git-stats-components - framework-agnostic",
 	"author": "Derek Johnston",
 	"license": "MIT",
@@ -21,7 +21,8 @@
 	"files": [
 		"dist",
 		"README.md",
-		"LICENSE"
+		"LICENSE",
+		"screenshot-*.png"
 	],
 	"scripts": {
 		"build": "tsc && node scripts/post-build.js",

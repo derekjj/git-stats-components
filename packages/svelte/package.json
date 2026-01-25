@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/svelte",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Beautiful GitHub/GitLab/Bitbucket contribution graphs for Svelte",
 	"author": "Derek Johnston",
 	"license": "MIT",
@@ -17,7 +17,10 @@
 	},
 	"files": [
 		"dist",
-		"src"
+		"src",
+		"README.md",
+		"LICENSE",
+		"screenshot-*.png"
 	],
 	"keywords": [
 		"svelte",

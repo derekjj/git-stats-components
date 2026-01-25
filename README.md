@@ -7,6 +7,10 @@
 ![Git Stats Components](./screenshot-contribution-graph-black.png)
 ![Git Stats Components](./screenshot-stats-breakdown-black.png)
 
+## Demo
+
+[View Live Demo](https://derekjohnston.ca/demo)
+
 ## Features
 
 - 🎨 **Multi-Platform** - GitHub, GitLab, and Bitbucket support
