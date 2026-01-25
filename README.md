@@ -4,7 +4,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Git Stats Components](./screenshot-black.png)
+![Git Stats Components](./screenshot-contribution-graph-black.png)
+![Git Stats Components](./screenshot-stats-breakdown-black.png)
 
 ## Features
 

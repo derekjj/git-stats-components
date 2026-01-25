@@ -5,6 +5,9 @@
 [![npm version](https://img.shields.io/npm/v/@git-stats-components/core.svg)](https://www.npmjs.com/package/@git-stats-components/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![Git Stats Components](./../../screenshot-contribution-graph-black.png)
+![Git Stats Components](./../../screenshot-stats-breakdown-black.png)
+
 This package provides the shared functionality used by Vue, React, and Svelte implementations.
 
 ## Installation
