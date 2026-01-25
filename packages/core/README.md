@@ -9,8 +9,8 @@
 
 [View Live Demo](https://derekjohnston.ca/demo)
 
-![Git Stats Components](./../../screenshot-contribution-graph-black.png)
-![Git Stats Components](./../../screenshot-stats-breakdown-black.png)
+![Git Stats Components](./screenshot-contribution-graph-black.png)
+![Git Stats Components](./screenshot-stats-breakdown-black.png)
 
 This package provides the shared functionality used by Vue, React, and Svelte implementations.
 

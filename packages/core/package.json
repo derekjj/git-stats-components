@@ -1,6 +1,6 @@
 {
 	"name": "@git-stats-components/core",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Core logic for git-stats-components - framework-agnostic",
 	"author": "Derek Johnston",
 	"license": "MIT",

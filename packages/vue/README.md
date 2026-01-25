@@ -9,8 +9,8 @@
 
 [View Live Demo](https://derekjohnston.ca/demo)
 
-![Git Stats Components](./../../screenshot-contribution-graph-black.png)
-![Git Stats Components](./../../screenshot-stats-breakdown-black.png)
+![Git Stats Components](./screenshot-contribution-graph-black.png)
+![Git Stats Components](./screenshot-stats-breakdown-black.png)
 
 ## Installation
 
