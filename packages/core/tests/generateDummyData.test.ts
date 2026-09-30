@@ -25,7 +25,7 @@ describe('generateDummyContributions', () => {
 	it('should have valid date format (YYYY-MM-DD)', () => {
 		const dateRegex = /^\d{4}-\d{2}-\d{2}$/
 		contributions.forEach((week) => {
-			expect(week.weekStart).toMatch(dateRegex)
+			expect(week.firstDay).toMatch(dateRegex)
 			week.contributionDays.forEach((day) => {
 				expect(day.date).toMatch(dateRegex)
 			})

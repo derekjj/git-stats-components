@@ -141,30 +141,48 @@ export function getContributionLevel(count: number): number {
 	return 4
 }
 
+const MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365.25
+
 /**
- * Calculate years of experience
+ * Calculate years of experience: the longest time spent with any one skill.
+ * Overlapping positions that share a skill count that time once, not twice.
+ * Entries with unparseable dates are skipped.
  */
 export function calculateYearsExperience(
-	experienceData: { startDate: string; endDate: string | null; skills?: string[] }[]
+	experienceData: { startDate: string; endDate: string | null; skills?: string[] }[],
+	now: Date = new Date()
 ): number {
-	if (experienceData.length === 0) return 0
-
-	const skillExperience: Record<string, number> = {}
+	const rangesBySkill: Record<string, [number, number][]> = {}
 
 	experienceData.forEach((exp) => {
-		const end = exp.endDate ? new Date(exp.endDate) : new Date()
-		const start = new Date(exp.startDate)
-		const years = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+		const start = new Date(exp.startDate).getTime()
+		const end = exp.endDate ? new Date(exp.endDate).getTime() : now.getTime()
+		if (Number.isNaN(start) || Number.isNaN(end) || end <= start) return
 
 		exp.skills?.forEach((skill) => {
-			if (!skillExperience[skill]) {
-				skillExperience[skill] = 0
-			}
-			skillExperience[skill] += years
+			;(rangesBySkill[skill] ??= []).push([start, end])
 		})
 	})
 
-	return Math.max(...Object.values(skillExperience), 0)
+	let longest = 0
+	for (const ranges of Object.values(rangesBySkill)) {
+		// Merge overlapping ranges, then total the merged time
+		ranges.sort((a, b) => a[0] - b[0])
+		let total = 0
+		let [currentStart, currentEnd] = ranges[0]
+		for (const [start, end] of ranges.slice(1)) {
+			if (start <= currentEnd) {
+				currentEnd = Math.max(currentEnd, end)
+			} else {
+				total += currentEnd - currentStart
+				;[currentStart, currentEnd] = [start, end]
+			}
+		}
+		total += currentEnd - currentStart
+		longest = Math.max(longest, total / MS_PER_YEAR)
+	}
+
+	return longest
 }
 
 // Mock data generator

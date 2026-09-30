@@ -15,8 +15,8 @@ const dummyData = generateDummyStats({
 	commitCount: 2500,
 })
 
-// Save to file (in Node.js)
-saveDummyDataToFile('public/data/git-stats.json')
+// Save to file (in Node.js; downloads it in a browser). Returns a promise.
+await saveDummyDataToFile('public/data/git-stats.json')
 
 // Or manually create the file with this data
 console.log(JSON.stringify(dummyData, null, 2))

@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, getCurrentInstance, onMounted } from 'vue'
 import {
 	fetchGitStats,
 	formatLastUpdated,
@@ -21,7 +21,9 @@ export function useGitStats(config: UseGitStatsConfig = {}) {
 		cacheKey = 'git_stats_cache',
 	} = config
 
-	const loading = ref(false)
+	// Starts true so server-rendered HTML shows the loading state, which also
+	// matches the browser's first render before data arrives
+	const loading = ref(true)
 	const error = ref<Error | null>(null)
 	const data = ref<GitStatsData | null>(null)
 	const dataSource = ref<DataSource | null>(null)
@@ -85,8 +87,13 @@ export function useGitStats(config: UseGitStatsConfig = {}) {
 		}
 	})
 
-	// Auto-load on creation
-	loadData()
+	// Load in the browser only. On the server a relative dataUrl can't be
+	// fetched, and rendering fallback data there would flash wrong numbers.
+	// Inside a component wait for mount so hydration matches the server HTML.
+	if (typeof window !== 'undefined') {
+		if (getCurrentInstance()) onMounted(loadData)
+		else loadData()
+	}
 
 	return {
 		data,

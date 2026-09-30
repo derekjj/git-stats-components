@@ -40,3 +40,8 @@ __screenshots__/
 
 # Turborepo
 .turbo/
+
+# The Vue/React builds generate declarations next to the core sources
+# (core is aliased to its src); they belong in dist, not the repo
+packages/core/src/**/*.d.ts
+packages/core/src/**/*.js

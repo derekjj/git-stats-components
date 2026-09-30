@@ -134,11 +134,12 @@ export function generateMultiProfileDummyStats(): GitStatsData {
 }
 
 /**
- * Save dummy data to a file (for testing)
+ * Save dummy data to a file (for testing). Downloads it in a browser, writes
+ * it to `filepath` in Node.
  */
-export function saveDummyDataToFile(
+export async function saveDummyDataToFile(
 	filepath: string = 'dummy-git-stats.json'
-): void {
+): Promise<void> {
 	const data = generateDummyStats()
 	const json = JSON.stringify(data, null, '\t')
 
@@ -152,13 +153,13 @@ export function saveDummyDataToFile(
 		a.click()
 		URL.revokeObjectURL(url)
 	} else {
-		// Node environment
+		// Node environment. The module name is a variable so bundlers can't see
+		// it and don't pull `fs` into browser builds.
+		const fsModule = 'node:fs'
 		try {
-			// Dynamic import to avoid bundling fs
-			import('fs').then((fs) => {
-				fs.writeFileSync(filepath, json)
-				console.log(`✓ Dummy data saved to ${filepath}`)
-			})
+			const fs = await import(/* @vite-ignore */ fsModule)
+			fs.writeFileSync(filepath, json)
+			console.log(`✓ Dummy data saved to ${filepath}`)
 		} catch (err) {
 			console.error('Failed to save dummy data:', err)
 		}
