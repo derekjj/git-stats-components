@@ -150,9 +150,14 @@
     <!-- Header -->
     <div class="graph-header">
       <div class="header-info">
-        <h5 class="contribution-count">
-          {totalContributions.toLocaleString()} contributions in the last year
-        </h5>
+        <!-- Not a heading: the graph sits inside the host page's outline -->
+        <p class="contribution-count">
+          {#if data}
+            {totalContributions.toLocaleString()} contributions in the last year
+          {:else}
+            Contributions in the last year
+          {/if}
+        </p>
         <small class="data-source-text" class:is-dummy={data?.metadata?.isDummy}>
           {dataSourceText}
         </small>
@@ -274,6 +279,7 @@
       margin: 0 0 4px 0;
       font-size: 16px;
       font-weight: 600;
+      line-height: 1.2;
     }
   
     .data-source-text {

@@ -153,9 +153,12 @@ export const ContributionGraph: React.FC<ContributionGraphProps> = ({
       {/* Header */}
       <div className="graph-header">
         <div className="header-info">
-          <h5 className="contribution-count">
-            {totalContributions.toLocaleString()} contributions in the last year
-          </h5>
+          {/* Not a heading: the graph sits inside the host page's outline */}
+          <p className="contribution-count">
+            {data
+              ? `${totalContributions.toLocaleString()} contributions in the last year`
+              : 'Contributions in the last year'}
+          </p>
           <small className={`data-source-text ${isDummy ? 'is-dummy' : ''}`}>
             {dataSourceText}
           </small>

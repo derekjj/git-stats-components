@@ -157,12 +157,12 @@ describe('ContributionGraph', () => {
 	it('should display contribution count after loading', async () => {
 		const wrapper = mount(ContributionGraph)
 
+		// Before data arrives it reads "Contributions in the last year"
 		await vi.waitFor(() => {
-			expect(wrapper.find('.contribution-count').exists()).toBe(true)
+			expect(wrapper.find('.contribution-count').text()).toMatch(
+				/^[\d,]+ contributions in the last year$/
+			)
 		})
-
-		const contributionText = wrapper.find('.contribution-count').text()
-		expect(contributionText).toContain('contributions')
 	})
 
 	it('should apply correct color scheme class', async () => {
