@@ -1,10 +1,15 @@
-##
 TODO:
-Core
 
-Vue
+# Core
 
-React
-18 -> 19
+### Readme link broken
 
-Svelte
+- Contributions are welcome! Please see our ++[Contributing Guide](https://github.com/derekjj/git-stats-components/blob/main/CONTRIBUTING.md)++.
+    - need whole guide
+
+# Vue
+
+# React
+- 18 -> 19
+
+# Svelte
